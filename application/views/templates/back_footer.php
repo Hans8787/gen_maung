@@ -1,5 +1,5 @@
   <footer class="main-footer">
-    <strong class="text-center">&copy; OSIS SMK NEGERI 1 JAMBLANG 2018 - <?= date('Y'); ?>.</strong>
+    <strong class="text-center">Copyright &copy; OSIS SMK NEGERI 1 JAMBLANG 2018 - <?= date('Y'); ?>.</strong>
   </footer>
 
   <!-- Add the sidebar's background. This div must be placed

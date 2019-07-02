@@ -19,7 +19,7 @@
           <span>Beranda</span></a>
       </li>
 
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0">
 
       <!-- QUERY DARI MENU -->
       <?php 
@@ -35,7 +35,7 @@
 
       <!-- LOOPING MENU -->
       <?php foreach ($menu as $m) : ?>
-      <div class="sidebar-heading">
+      <div class="sidebar-heading pt-3">
         <?= $m['menu']; ?>
       </div>
 
@@ -57,14 +57,14 @@
             <?php else : ?>
           <li class="nav-item">
             <?php endif; ?>
-            <a class="nav-link" href="<?= base_url($sm['url']); ?>">
+            <a class="nav-link pb-0" href="<?= base_url($sm['url']); ?>">
               <i class="<?= $sm['icon']; ?>"></i>
               <span><?= $sm['title']; ?></span></a>
           </li>
         <?php endforeach; ?>
 
       <!-- Divider -->
-      <hr class="sidebar-divider">
+      <hr class="sidebar-divider my-0 mt-3">
 
       <?php endforeach; ?>
 
