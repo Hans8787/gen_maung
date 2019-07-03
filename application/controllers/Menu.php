@@ -80,4 +80,36 @@ class Menu extends CI_Controller
 		redirect('menu/submenu');
 	}
 
+	public function editMenu()
+	{
+		$data['title'] = 'Edit Menu Management';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		// ambil data dari get
+		$id = $this->input->get('id');
+
+		// ambil data dari post
+		$new_menu = $this->input->post('menu');
+		// $id = $this->input->post('id');
+
+		$data['menu'] = $this->db->get_where('user_menu', ['id' => $id])->row_array();
+
+		$this->form_validation->set_rules('menu', 'Menu', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('menu/editmenu', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$this->db->set('menu', $new_menu);
+			$this->db->where('id', $id);
+			$this->db->update('user_menu');
+
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Menu has been updated!</div>');
+			redirect('menu');
+		}
+
+	}
+
 }
