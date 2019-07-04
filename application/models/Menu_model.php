@@ -11,4 +11,15 @@ class Menu_model extends CI_model
 				 ";
 		return $this->db->query($query)->result_array();
 	}
+
+	public function editMenu()
+	{
+		$data = [
+			"menu" => $this->input->post('menu', true)
+		];
+
+		$this->db->where('id', $this->input->post('id'));
+		$this->db->update('user_menu', $data);
+	}
+
 }

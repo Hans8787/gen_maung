@@ -10,6 +10,7 @@
 		  		
                 <form action="<?= base_url('menu/editmenu'); ?>" method="post">
 				  <div class="form-group row">
+				  	<input type="hidden" name="id" value="<?= $menu['id']; ?>">
 				    <label for="name" class="col-sm-2 col-form-label">Menu</label>
 				    <div class="col-sm-6">
 				      <input type="text" class="form-control" id="menu" name="menu" value="<?= $menu['menu']; ?>" >

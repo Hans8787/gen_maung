@@ -11,6 +11,9 @@ class Menu extends CI_Controller
 
 		// load menu model
 		$this->load->model('Menu_model', 'menu');
+
+		// load submenu model
+		$this->load->model('Submenu_model', 'submenu');
 	}
 
 	public function index()
@@ -102,12 +105,32 @@ class Menu extends CI_Controller
 			$this->load->view('menu/editmenu', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$this->db->set('menu', $new_menu);
-			$this->db->where('id', $id);
-			$this->db->update('user_menu');
-
+			$this->menu->editMenu();
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Menu has been updated!</div>');
 			redirect('menu');
+		}
+
+	}
+
+	public function editSubmenu($id)
+	{
+		$data['title'] = 'Edit Submenu Management';
+		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+
+		$data['sm'] = $this->submenu->getSubmenu($id);
+		$data['menu'] = $this->db->get('user_menu')->result_array();
+
+		$this->form_validation->set_rules('menu', 'Menu', 'required');
+		if ($this->form_validation->run() == FALSE) {
+			$this->load->view('templates/header', $data);
+			$this->load->view('templates/sidebar', $data);
+			$this->load->view('templates/topbar', $data);
+			$this->load->view('menu/editsubmenu', $data);
+			$this->load->view('templates/footer');
+		} else {
+			$this->menu->editSubmenu();
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Submenu has been updated!</div>');
+			redirect('menu/submenu');
 		}
 
 	}
