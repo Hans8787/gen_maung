@@ -56,16 +56,23 @@ class Menu extends CI_Controller
 			$this->load->view('menu/submenu', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$data = [
-				'title' => $this->input->post('title'),
-				'menu_id' => $this->input->post('menu_id'),
-				'url' => $this->input->post('url'),
-				'icon' => $this->input->post('icon'),
-				'is_active' => $this->input->post('is_active'),
-			];
-			$this->db->insert('user_sub_menu', $data);
-			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New sub menu added!</div>');
-			redirect('menu/submenu');
+			$is_active = $this->input->post('is_active');
+			if ($is_active == null) {
+				$is_active == 0;
+
+				$data = [
+					'title' => $this->input->post('title'),
+					'menu_id' => $this->input->post('menu_id'),
+					'url' => $this->input->post('url'),
+					'icon' => $this->input->post('icon'),
+					'is_active' => $is_active
+				];
+
+				$this->db->insert('user_sub_menu', $data);
+				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New sub menu added!</div>');
+				redirect('menu/submenu');
+			}
+
 		}
 	}
 
@@ -114,7 +121,7 @@ class Menu extends CI_Controller
 
 	public function editSubmenu($id)
 	{
-		$data['title'] = 'Edit Submenu Management';
+		$data['title'] = 'Edit Submenu';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
 		$data['sm'] = $this->submenu->getSubmenu($id);
@@ -128,7 +135,7 @@ class Menu extends CI_Controller
 			$this->load->view('menu/editsubmenu', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$this->menu->editSubmenu();
+			$this->submenu->editSubmenu();
 			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Submenu has been updated!</div>');
 			redirect('menu/submenu');
 		}

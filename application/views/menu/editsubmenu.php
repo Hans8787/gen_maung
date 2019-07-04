@@ -24,9 +24,12 @@
 				  	<label for="menu_id" class="col-sm-2 col-form-label">Select Menu</label>
 				  	<div class="col-sm-6">
 				  	  <select name="menu_id" id="menu_id" class="form-control">
-				  	  	  <option value="">Select Menu</option>
 				  		  <?php foreach ($menu as $m) : ?>
-				  			<option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+				  		  	<?php if($m['id'] == $sm['menu_id']) : ?>
+				  				<option value="<?= $m['id']; ?>" selected><?= $m['menu']; ?></option>
+							<?php else : ?>
+								<option value="<?= $m['id']; ?>"><?= $m['menu']; ?></option>
+							<?php endif; ?>
 				  		  <?php endforeach; ?>
 				  	  </select>
 				    </div>
