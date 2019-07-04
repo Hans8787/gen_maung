@@ -119,15 +119,21 @@ class Menu extends CI_Controller
 
 	}
 
-	public function editSubmenu($id)
+	public function editSubmenu()
 	{
 		$data['title'] = 'Edit Submenu';
 		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
 
+		// ambil data dari get
+		$id = $this->input->get('id');
+
 		$data['sm'] = $this->submenu->getSubmenu($id);
 		$data['menu'] = $this->db->get('user_menu')->result_array();
 
-		$this->form_validation->set_rules('menu', 'Menu', 'required');
+		$this->form_validation->set_rules('title', 'Title', 'required');
+		$this->form_validation->set_rules('menu_id', 'Menu', 'required');
+		$this->form_validation->set_rules('url', 'URL', 'required');
+		$this->form_validation->set_rules('icon', 'Icon', 'required');
 		if ($this->form_validation->run() == FALSE) {
 			$this->load->view('templates/header', $data);
 			$this->load->view('templates/sidebar', $data);

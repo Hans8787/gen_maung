@@ -53,6 +53,17 @@
 				    </div>
 				  </div>
 
+				  <!-- is avtive -->
+				  <div class="form-group row">
+				  	<label for="is_active" class="col-sm-2">coba</label>
+				  	<div class="form-check col-sm-6">
+				  		<input type="checkbox" class="form-check-input" value="1" name="is_active" id="is_active1" checked>
+				  		<label for="is_active1" class="form-check-label">
+				  			Active?
+				  		</label>
+				  	</div>
+				  </div>
+
 				  <!-- tombol edit -->
 				  <div class="form-group row justify-content-end">
 				  	<div class="col-sm-10">
