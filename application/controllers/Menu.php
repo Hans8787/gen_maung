@@ -19,7 +19,8 @@ class Menu extends CI_Controller
 	public function index()
 	{
 		$data['title'] = 'Menu Management';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$email = $this->session->userdata('email');
+		$data['user'] = $this->user->getUserByEmail($email);
 
 		$data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -41,7 +42,9 @@ class Menu extends CI_Controller
 	public function submenu()
 	{
 		$data['title'] = 'Submenu Management';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$email = $this->session->userdata('email');
+		$data['user'] = $this->user->getUserByEmail($email);
+		
 		$data['subMenu'] = $this->menu->getSubMenu();
 		$data['menu'] = $this->db->get('user_menu')->result_array();
 
@@ -93,7 +96,8 @@ class Menu extends CI_Controller
 	public function editMenu()
 	{
 		$data['title'] = 'Edit Menu Management';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
+		$email = $this->session->userdata('email');
+		$data['user'] = $this->user->getUserByEmail($email);
 
 		// ambil data dari get
 		$id = $this->input->get('id');
@@ -119,13 +123,11 @@ class Menu extends CI_Controller
 
 	}
 
-	public function editSubmenu()
+	public function editSubmenu($id)
 	{
 		$data['title'] = 'Edit Submenu';
-		$data['user'] = $this->db->get_where('user', ['email' => $this->session->userdata('email')])->row_array();
-
-		// ambil data dari get
-		$id = $this->input->get('id');
+		$email = $this->session->userdata('email');
+		$data['user'] = $this->user->getUserByEmail($email);
 
 		$data['sm'] = $this->submenu->getSubmenu($id);
 		$data['menu'] = $this->db->get('user_menu')->result_array();

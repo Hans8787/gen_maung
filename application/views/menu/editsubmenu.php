@@ -8,14 +8,14 @@
           <div class="row">
 		  	<div class="col-lg-8">
 		  		
-                <form action="<?= base_url('menu/editsubmenu'); ?>" method="post">
+                <form action="" method="post">
                   <input type="hidden" name="id" value="<?= $sm['id']; ?>">
                   <!-- Submenu title -->
 				  <div class="form-group row">
 				    <label for="name" class="col-sm-2 col-form-label">Title</label>
 				    <div class="col-sm-6">
 				      <input type="text" class="form-control" id="title" name="title" value="<?= $sm['title']; ?>" >
-				      <?= form_error('name', '<small class="text-danger pl-2">', '</small>'); ?>
+				      <?= form_error('title', '<small class="text-danger pl-2">', '</small>'); ?>
 				    </div>
 				  </div>
 
@@ -40,7 +40,7 @@
 				    <label for="name" class="col-sm-2 col-form-label">URL</label>
 				    <div class="col-sm-6">
 				      <input type="text" class="form-control" id="url" name="url" value="<?= $sm['url']; ?>" >
-				      <?= form_error('name', '<small class="text-danger pl-2">', '</small>'); ?>
+				      <?= form_error('url', '<small class="text-danger pl-2">', '</small>'); ?>
 				    </div>
 				  </div>
 
@@ -49,7 +49,7 @@
 				    <label for="name" class="col-sm-2 col-form-label">Icon</label>
 				    <div class="col-sm-6">
 				      <input type="text" class="form-control" id="icon" name="icon" value="<?= $sm['icon']; ?>" >
-				      <?= form_error('name', '<small class="text-danger pl-2">', '</small>'); ?>
+				      <?= form_error('icon', '<small class="text-danger pl-2">', '</small>'); ?>
 				    </div>
 				  </div>
 

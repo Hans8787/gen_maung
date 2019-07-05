@@ -40,7 +40,7 @@
 				      <td><?= $sm['icon']; ?></td>
 				      <td><?= $sm['is_active']; ?></td>
 				      <td>
-				      	<a href="<?= base_url(); ?>menu/editSubmenu?id=<?= $sm['id']; ?>" class="badge badge-success">edit</a>
+				      	<a href="<?= base_url(); ?>menu/editSubmenu/<?= $sm['id']; ?>" class="badge badge-success">edit</a>
 				      	<a href="<?= base_url(); ?>menu/hapusSm/<?= $sm['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure delete it?');">delete</a>
 				      </td>
 				    </tr>
