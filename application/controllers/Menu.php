@@ -59,23 +59,17 @@ class Menu extends CI_Controller
 			$this->load->view('menu/submenu', $data);
 			$this->load->view('templates/footer');
 		} else {
-			$is_active = $this->input->post('is_active');
-			if ($is_active == null) {
-				$is_active == 0;
+			$data = [
+				'title' => $this->input->post('title'),
+				'menu_id' => $this->input->post('menu_id'),
+				'url' => $this->input->post('url'),
+				'icon' => $this->input->post('icon'),
+				'is_active' => $this->input->post('is_active')
+			];
 
-				$data = [
-					'title' => $this->input->post('title'),
-					'menu_id' => $this->input->post('menu_id'),
-					'url' => $this->input->post('url'),
-					'icon' => $this->input->post('icon'),
-					'is_active' => $is_active
-				];
-
-				$this->db->insert('user_sub_menu', $data);
-				$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New sub menu added!</div>');
-				redirect('menu/submenu');
-			}
-
+			$this->db->insert('user_sub_menu', $data);
+			$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">New sub menu added!</div>');
+			redirect('menu/submenu');
 		}
 	}
 

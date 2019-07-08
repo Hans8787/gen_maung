@@ -54,6 +54,11 @@
 
   <!-- Page level custom scripts DataTables -->
   <script src="<?= base_url('assets/admin/'); ?>js/demo/datatables-demo.js"></script>
+
+  <!-- ckeditor -->
+  <script src="<?= base_url(); ?>assets/ckeditor/ckeditor.js"></script>
+  <!-- adapter jquery ckeditor -->
+  <script src="<?= base_url(); ?>assets/ckeditor/adapters/jquery.js"></script>
   
   <!-- My Script -->
   <script>

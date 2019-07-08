@@ -30,59 +30,13 @@ class Foto extends CI_Controller {
 		$this->load->view('templates/front_footer');
 	}
 
-	public function foto_admin()
-	{
-		$data['judul'] = 'Admin | Galeri Foto';
-
-		// PAGINATION
-		// load library
-		$this->load->library('pagination');
-
-		// config
-		$config['base_url'] = 'http://localhost/osissmknjamblang/foto/foto_admin/index';
-		$config['total_rows'] = $this->Foto_model->countAllFoto();
-		$config['per_page'] = 10;
-
-		// styling
-		$config['full_tag_open'] = '<div class="blog-pagination"><ul class="pagination">';
-		$config['full_tag_close'] = '</ul></div>';
-
-		$config['first_link'] = 'First';
-		$config['first_tag_open'] = '<li>';
-		$config['first_tag_close'] = '</li>';
-
-		$config['last_link'] = 'Last';
-		$config['last_tag_open'] = '<li>';
-		$config['last_tag_close'] = '</li>';
-
-		$config['next_link'] = '&raquo';
-		$config['next_tag_open'] = '<li>';
-		$config['next_tag_close'] = '</li>';
-
-		$config['prev_link'] = '&laquo';
-		$config['prev_tag_open'] = '<li>';
-		$config['prev_tag_close'] = '</li>';
-
-		$config['cur_tag_open'] = '<li class="active"><a href="#">';
-		$config['cur_tag_close'] = '</a></li>';
-
-		$config['num_tag_open'] = '<li>';
-		$config['num_tag_close'] = '</li>';
-
-		// initialize
-		$this->pagination->initialize($config);
-
-		$data['start'] = $this->uri->segment(3);
-		$data['foto'] = $this->Foto_model->getFoto($config['per_page'], $data['start']);
-		$this->load->view('templates/back_header', $data);
-		$this->load->view('foto/foto_admin', $data);
-		$this->load->view('templates/back_footer');
-	}
-
 	public function hapus($id)
 	{
-		$this->Foto_model->hapusFoto($id);
-		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('foto/foto_admin');
+		$old_foto = $this->db->get_where('g_foto', ['id' => $id])->row_array();
+		unlink(FCPATH . 'assets/foto/' . $old_foto['foto']);
+
+		$this->foto->hapusFoto($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Satu foto berhasil di dihapus!</div>');
+		redirect('galeri/foto');
 	}
 }
