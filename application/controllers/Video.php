@@ -81,8 +81,11 @@ class Video extends CI_Controller {
 
 	public function hapus($id)
 	{
-		$this->Video_model->hapusVideo($id);
-		$this->session->set_flashdata('flash', 'Dihapus');
-		redirect('video/video_admin');
+		$old_video = $this->db->get_where('g_video', ['id' => $id])->row_array();
+		unlink(FCPATH . 'assets/video/' . $old_video['video']);
+
+		$this->video->hapusVideo($id);
+		$this->session->set_flashdata('message', '<div class="alert alert-success" role="alert">Satu video berhasil di dihapus!</div>');
+		redirect('galeri/video');
 	}
 }

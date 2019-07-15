@@ -28,10 +28,10 @@
 				  		</video>
 				  		<!-- <small class="text-muted p1-2">Post by <?= $v['creator']; ?></small> -->
 
-				  		<?php if($user['role_id'] == 1) : ?>
-				  		  <!-- <a href="<?= base_url(); ?>video/hapus/<?= $v['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure delete it?');">delete</a> -->
-				  		<?php endif; ?>
 				  	</div>
+				  		<?php if($user['role_id'] == 1) : ?>
+				  		  <a href="<?= base_url(); ?>video/hapus/<?= $v['id']; ?>" class="badge badge-danger" onclick="return confirm('Are you sure delete it?');">delete</a>
+				  		<?php endif; ?>
 				  	<?php endforeach; ?>
 				  </div>
 
